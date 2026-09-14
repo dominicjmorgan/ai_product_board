@@ -1,0 +1,520 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NYC AI Product Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EFF0F2;
+  --surface:#FFFFFF;
+  --surface-2:#E6E8EC;
+  --ink:#171A20;
+  --ink-2:#4C535F;
+  --ink-3:#7C8492;
+  --line:#D6D9DF;
+  --line-2:#C3C7CF;
+  --accent:#8A2E3B;
+  --accent-2:#B0505E;
+  --accent-soft:#F4E5E7;
+  --pos:#1C6B50;
+  --pos-soft:#E2EFE9;
+  --warn:#8A6714;
+  --warn-soft:#F5ECD8;
+  --shadow:0 1px 2px rgba(20,24,32,.06), 0 8px 24px -16px rgba(20,24,32,.28);
+  --radius:7px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#111318;
+    --surface:#191C22;
+    --surface-2:#22262E;
+    --ink:#E9EBEF;
+    --ink-2:#A6AEBB;
+    --ink-3:#79818E;
+    --line:#2C313A;
+    --line-2:#3A414C;
+    --accent:#D9808C;
+    --accent-2:#E9A3AD;
+    --accent-soft:#2E2126;
+    --pos:#5CBE97;
+    --pos-soft:#1B2A25;
+    --warn:#CFAA4E;
+    --warn-soft:#2A2519;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#111318;
+  --surface:#191C22;
+  --surface-2:#22262E;
+  --ink:#E9EBEF;
+  --ink-2:#A6AEBB;
+  --ink-3:#79818E;
+  --line:#2C313A;
+  --line-2:#3A414C;
+  --accent:#D9808C;
+  --accent-2:#E9A3AD;
+  --accent-soft:#2E2126;
+  --pos:#5CBE97;
+  --pos-soft:#1B2A25;
+  --warn:#CFAA4E;
+  --warn-soft:#2A2519;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:34px 22px 90px}
+
+/* ---------- masthead ---------- */
+.masthead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1.5px solid var(--ink)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:clamp(34px,5.5vw,50px);line-height:1.02;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.sub{margin:10px 0 0;color:var(--ink-2);max-width:56ch;font-size:14.5px}
+.saveflag{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em;text-align:right;min-width:150px}
+.saveflag b{color:var(--pos);font-weight:500}
+
+/* ---------- stat rail ---------- */
+.rail{display:flex;flex-wrap:wrap;gap:0;margin:0;padding:0;border-bottom:1px solid var(--line);list-style:none}
+.rail li{flex:1 1 150px;padding:16px 20px 15px;border-right:1px solid var(--line)}
+.rail li:last-child{border-right:none}
+.rail .k{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 5px}
+.rail .v{display:block;font-family:"Newsreader",Georgia,serif;font-size:27px;font-weight:600;line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.rail .note{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:11.5px;font-weight:400;color:var(--ink-3);margin-top:6px;letter-spacing:0}
+
+/* ---------- controls ---------- */
+.controls{position:sticky;top:0;z-index:20;background:var(--ground);padding:14px 0 12px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.search{flex:1 1 230px;min-width:190px;position:relative}
+.search input{width:100%;padding:8px 11px;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--surface);color:var(--ink);font:inherit;font-size:14px}
+.search input::placeholder{color:var(--ink-3)}
+.search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.chipset{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.chipset .cs-label{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:3px}
+.chip{font:inherit;font-size:12.5px;padding:5px 11px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);border-radius:100px;cursor:pointer;white-space:nowrap;transition:background .12s,color .12s,border-color .12s}
+.chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select.sortsel{font:inherit;font-size:12.5px;padding:5px 9px;border:1px solid var(--line-2);border-radius:var(--radius);background:var(--surface);color:var(--ink-2);cursor:pointer}
+
+/* ---------- tiers ---------- */
+.tier{margin-top:34px}
+.tier-head{display:flex;align-items:baseline;gap:12px;margin-bottom:2px}
+.tier-head h2{font-family:"Newsreader",Georgia,serif;font-size:23px;font-weight:600;margin:0;letter-spacing:-.01em}
+.tier-head .count{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+.tier-head .rule{flex:1;height:1px;background:var(--line);align-self:center}
+.tier-note{margin:2px 0 12px;font-size:13px;color:var(--ink-3);max-width:66ch}
+
+/* ---------- role rows ---------- */
+.rows{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.row{background:var(--surface);display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;gap:0 14px;align-items:start;padding:13px 15px}
+.row.applied{background:linear-gradient(90deg,var(--pos-soft) 0 3px,var(--surface) 3px)}
+.row.closed{opacity:.5}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+.mark{width:34px;height:34px;border-radius:6px;display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.02em;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line);margin-top:2px}
+
+.main{min-width:0}
+.rtitle{margin:0;font-size:15.5px;font-weight:500;line-height:1.3;letter-spacing:-.005em}
+.rtitle a{color:var(--ink);text-decoration:none;background-image:linear-gradient(var(--line-2),var(--line-2));background-size:100% 1px;background-position:0 100%;background-repeat:no-repeat}
+.rtitle a:hover{color:var(--accent);background-image:linear-gradient(var(--accent),var(--accent))}
+.rtitle a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+.meta{margin:5px 0 0;font-size:12.5px;color:var(--ink-2);display:flex;flex-wrap:wrap;align-items:center;gap:4px 9px}
+.meta .co{color:var(--ink);font-weight:500}
+.meta .dot{color:var(--line-2)}
+.alt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;border:1px solid var(--line);padding:2px 6px;border-radius:3px;white-space:nowrap}
+.alt:hover{color:var(--accent);border-color:var(--accent)}
+.alt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.badge{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.badge.lvl-at{background:var(--pos-soft);color:var(--pos)}
+.badge.lvl-up{background:var(--accent-soft);color:var(--accent)}
+.badge.lvl-down{background:var(--warn-soft);color:var(--warn)}
+.badge.edge{background:var(--surface-2);color:var(--ink-2)}
+.why{margin:9px 0 0;font-size:13.2px;line-height:1.5;color:var(--ink-2);max-width:64ch}
+.why em{color:var(--ink);font-style:normal;font-weight:500;background:var(--accent-soft);border-radius:2px;padding:1px 3px;margin:0 -1px}
+.flagline{margin:8px 0 0;font-size:12.4px;color:var(--warn);display:flex;gap:6px;align-items:flex-start;max-width:62ch}
+.flagline::before{content:"⚠";font-size:11px;line-height:1.5}
+
+.comp{text-align:right;font-size:13px;white-space:nowrap;padding-top:2px}
+.comp .band{font-weight:500;color:var(--ink)}
+.comp .cl{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+
+.right{display:flex;flex-direction:column;align-items:flex-end;gap:7px;padding-top:1px}
+.fit{font-family:"Newsreader",Georgia,serif;font-size:22px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.fit.hi{color:var(--accent)}
+.fit.mid{color:var(--ink)}
+.fit.lo{color:var(--ink-3)}
+.status{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:100px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-3);cursor:pointer;min-width:92px;text-align:center}
+.status:hover{border-color:var(--ink-3);color:var(--ink-2)}
+.status:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.status[data-s="shortlist"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.status[data-s="applied"]{border-color:var(--pos);color:var(--pos);background:var(--pos-soft)}
+.status[data-s="interviewing"]{border-color:var(--pos);color:var(--surface);background:var(--pos)}
+.status[data-s="closed"]{border-color:var(--line-2);color:var(--ink-3);background:var(--surface-2)}
+
+.empty{padding:38px 16px;text-align:center;color:var(--ink-3);font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+
+/* ---------- gaps ---------- */
+.gaps{margin-top:46px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.gaps h2{font-family:"Newsreader",Georgia,serif;font-size:21px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
+.gaps p.lede{margin:0 0 16px;font-size:13.4px;color:var(--ink-2);max-width:70ch}
+.gapgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px 26px}
+.gapgrid h3{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 7px;font-weight:500}
+.gapgrid ul{margin:0;padding-left:16px;font-size:13.2px;color:var(--ink-2);line-height:1.55}
+.gapgrid li{margin-bottom:5px}
+.gapgrid li b{color:var(--ink);font-weight:500}
+
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+@media (max-width:720px){
+  .wrap{padding:24px 14px 70px}
+  .row{grid-template-columns:32px minmax(0,1fr);gap:0 11px}
+  .mark{width:28px;height:28px;font-size:9.5px}
+  .comp{grid-column:2;text-align:left;padding-top:9px}
+  .comp .cl{display:inline;margin-left:7px}
+  .right{grid-column:2;flex-direction:row;align-items:center;justify-content:space-between;width:100%;padding-top:10px}
+  .rail li{flex:1 1 50%;border-bottom:1px solid var(--line)}
+  .saveflag{text-align:left;min-width:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Re-verified 10 Sep 2026 · New York metro</p>
+      <h1>NYC AI Product Board</h1>
+      <p class="sub">Open product roles matched against 13 years of AI and data product work — RAG systems, agent orchestration, MCP integrations, and LLM evaluation. Every req below was confirmed against a live applicant-tracking feed, not just a page that renders.</p>
+    </div>
+    <div class="saveflag" id="saveflag">tracking locally</div>
+  </header>
+
+  <ul class="rail">
+    <li><span class="k">Confirmed open</span><span class="v" id="stat-total">0</span><span class="note">across 23 orgs, checked against live feeds</span></li>
+    <li><span class="k">At or above Director</span><span class="v" id="stat-level">0</span><span class="note">the rest are a down-level move</span></li>
+    <li><span class="k">Tier 1 targets</span><span class="v" id="stat-tier1">0</span><span class="note">fit 9.0 and above</span></li>
+    <li><span class="k">Confirmed dead</span><span class="v">4</span><span class="note">removed; 4 more flagged as unconfirmable</span></li>
+  </ul>
+
+  <div class="controls">
+    <div class="search"><input id="q" type="search" placeholder="Search title, company, or reason…" aria-label="Search roles"></div>
+    <div class="chipset" id="grp" role="group" aria-label="Company group">
+      <span class="cs-label">Sector</span>
+      <button class="chip" data-v="all" aria-pressed="true">All</button>
+      <button class="chip" data-v="bigtech" aria-pressed="false">Big tech</button>
+      <button class="chip" data-v="labs" aria-pressed="false">AI labs</button>
+      <button class="chip" data-v="ent" aria-pressed="false">Enterprise</button>
+      <button class="chip" data-v="nyc" aria-pressed="false">NYC-HQ</button>
+    </div>
+    <div class="chipset" id="lvl" role="group" aria-label="Level filter">
+      <span class="cs-label">Level</span>
+      <button class="chip" data-v="all" aria-pressed="true">Any</button>
+      <button class="chip" data-v="keep" aria-pressed="false">Director+</button>
+    </div>
+    <label style="display:flex;align-items:center;gap:6px"><span class="cs-label" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">Sort</span>
+      <select class="sortsel" id="sort">
+        <option value="fit">Fit score</option>
+        <option value="comp">Top of band</option>
+        <option value="co">Company</option>
+      </select>
+    </label>
+  </div>
+
+  <main id="board"></main>
+
+  <section class="gaps">
+    <h2>How these were checked, and what's still unknown</h2>
+    <p class="lede">Two things can go wrong, and both did. A career page that renders a full job description is not proof the req is open — several companies serve complete cached pages for closed roles. But absence from a listing page is not proof it is closed either: that test wrongly killed four live Datadog and Google roles before a per-req check brought them back. The standard here is now a single one — a per-req lookup against the company's own applicant-tracking feed, which returns a hard 404 when a req is gone. Four roles failed that. Where no such endpoint exists, the row is kept and flagged rather than guessed at.</p>
+    <div class="gapgrid">
+      <div>
+        <h3>Kept but unconfirmable</h3>
+        <ul>
+          <li><b>Google</b>, <b>Intuit</b>, <b>Etsy</b>, <b>Stripe</b> publish no per-req endpoint. Rows carry a warning; the postings are live and indexed, but a small chance of closure remains.</li>
+          <li><b>Adobe Bridgeway</b> — blocks automated reads entirely; New York may or may not be a valid location. Ask a recruiter before writing anything bespoke.</li>
+          <li><b>Anthropic Claude Tag</b> — its own feed contradicts its own posting on whether NYC counts.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Blocked — check by hand</h3>
+        <ul>
+          <li><b>Meta</b> and <b>Microsoft Corp / LinkedIn / GitHub</b> — client-rendered or robots-blocked. All three certainly have NYC PM reqs.</li>
+          <li><b>Salesforce Agentforce</b> and <b>ServiceNow AI Platform</b> — the two best conceptual fits in the whole target list, neither verifiable here.</li>
+          <li><b>Goldman Sachs</b>, <b>NVIDIA</b>, <b>Warner Bros. Discovery</b> — portals blocked.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Real negatives</h3>
+        <ul>
+          <li><b>OpenAI</b> — 11 PM reqs open, every one San Francisco.</li>
+          <li><b>Apple</b> — no NYC PM reqs at all; NYC headcount is ML engineering and retail.</li>
+          <li><b>Snowflake</b> — product org sits in the Bay Area and Bellevue.</li>
+          <li><b>Spotify</b>, <b>Squarespace</b>, <b>xAI</b>, <b>Perplexity</b>, <b>Glean</b> — nothing NYC in product.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>The level problem</h3>
+        <ul>
+          <li>Every Amazon NYC agent role sits at <b>Senior PMT</b>, one rung below you — the AWS Developer Tools Director is the only same-level move inside the company.</li>
+          <li>Google tops out at <b>Group PM</b> for Director-equivalent scope, and its one remaining GPM opening is among its weakest content fits.</li>
+          <li>Anthropic and Netflix pay a Senior PM more than most Director bands here, so title and comp point in opposite directions. Anthropic Enterprise alone is <b>$385–595K</b>.</li>
+          <li><b>Bloomberg</b> is now the densest same-level target: two Lead roles at $180–350K, both AI, both New York.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Status changes save to this page. If a direct link fails, use <b>find req</b> on that row.</span>
+    <span class="mono">63 roles · 24 orgs · re-verified 2026-09-10</span>
+  </footer>
+</div>
+
+<script id="app-state" type="application/json">{"status":{}}</script>
+<script id="role-data" type="application/json">
+[
+{"id": "dd2", "co": "Datadog", "grp": "nyc", "title": "Director, Product Management, AI Observability", "lvl": "Director", "loc": "New York, hybrid", "min": 280, "max": 350, "fit": 10, "lvlFit": "at", "url": "https://careers.datadoghq.com/detail/7798672/?gh_jid=7798672", "why": "Director scope with a team, at your current level and a band that matches it. Wants deep AI/ML technical knowledge plus hands-on use of AI tooling — the rare role here that asks for the leadership and the build history in one person."},
+{"id": "dd1", "co": "Datadog", "grp": "nyc", "title": "Senior Product Manager, Data Agent", "lvl": "Senior PM", "loc": "New York, hybrid", "min": 192, "max": 240, "fit": 10, "lvlFit": "down", "url": "https://careers.datadoghq.com/detail/7785350/?gh_jid=7785350", "why": "Zero-to-one AI analytics product requiring SQL, semantic layers, and explicitly <em>prompt engineering, evals, and the UX of non-deterministic systems</em>. Your text-to-SQL build and RAGAS framework are the two halves of this job."},
+{"id": "g1", "co": "Google", "grp": "bigtech", "title": "Product Manager, Workspace Third Party AI Controls", "lvl": "Senior · 8+ yrs", "loc": "New York, hybrid", "min": 192, "max": 278, "fit": 9.5, "lvlFit": "down", "url": "https://www.google.com/about/careers/applications/jobs/results/123698400200663750-product-manager-workspace-third-party-ai-controls", "why": "The posting names <em>Model Context Protocol</em> and agentic-action governance outright. You have shipped a production MCP service-to-service integration; almost no other PM candidate can say that sentence.", "flag": "Application window stated as open \"until at least August 24, 2026,\" now passed — but the req is still in Google's live listings with an active apply. Treat as at-risk and apply early."},
+{"id": "an2", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Enterprise", "lvl": "6+ yrs, 3+ enterprise", "loc": "SF · New York", "min": 385, "max": 595, "fit": 9, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5253339008", "why": "Audit logging, access controls, governance, SOC 2 and HIPAA. Amazon-scale enterprise delivery plus your Morgan Stanley and Capco regulated-industry years are an unusually clean match. Band re-checked against the live feed: <em>$385–595K</em>, well above what I first listed."},
+{"id": "bb1", "co": "Bloomberg", "grp": "nyc", "title": "Product Management Lead, AI — Real-Time News", "lvl": "Lead, people-managing", "loc": "New York", "min": 180, "max": 350, "fit": 9, "lvlFit": "at", "url": "https://bloomberg.avature.net/careers/JobDetail/Product-Management-Lead-AI-Real-Time-News/18433", "why": "Wants 10+ years, team leadership, AI/ML shipping, <em>and</em> financial-markets fluency. It is the only posting on the board that rewards both halves of your career at once."},
+{"id": "bb2", "co": "Bloomberg", "grp": "nyc", "title": "Product Management Lead, AI Ready Data", "lvl": "Lead, people-managing", "loc": "New York", "min": 180, "max": 350, "fit": 9, "lvlFit": "at", "url": "https://bloomberg.avature.net/careers/JobDetail/Product-Management-Lead-AI-Ready-Data/20604", "why": "Lead level at the same band as the Real-Time News role, and the mandate is <em>data shaped for AI consumption</em> — precisely the seam between your data-product years and your retrieval work."},
+{"id": "ms1", "co": "Microsoft AI", "grp": "bigtech", "title": "Principal Product Manager, Microsoft AI (Copilot)", "lvl": "Principal · IC6", "loc": "New York · Mountain View · Redmond", "min": 221, "max": 331, "fit": 9, "lvlFit": "at", "url": "https://microsoft.ai/careers/job/4391316009/principal-product-manager/", "why": "Owns model roadmap and <em>defines model evaluations using scientific, data-driven approaches</em>, including launch go/no-go. Principal preserves your level. The stretch is that their evals sit research-side, yours are applied. Note there is also a lower general-US band of $165.6–296.4K; the $221–331K figure is the NYC metro band."},
+{"id": "fg1", "co": "Figma", "grp": "ent", "title": "Product Manager, Developer Platform", "lvl": "PM · 6+ yrs", "loc": "SF · New York", "min": 169, "max": 303, "fit": 9, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/figma/jobs/6100482004", "why": "This role literally owns Figma's <em>MCP Server</em>, REST API, and Claude integrations. Highest signal-to-noise application on the board — your Audible MCP work is the job description."},
+{"id": "sc1", "co": "Scale AI", "grp": "labs", "title": "Product Manager, Enterprise Core Platform", "lvl": "6+ yrs", "loc": "New York · SF", "min": 240, "max": 300, "fit": 9, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/scaleai/jobs/4699779005", "why": "The foundational platform layer for AI deployment, and the posting states plainly it is <em>not a roadmap PM</em> role. Your vector-DB and 300-user analytics platform builds are the evidence it asks for."},
+{"id": "in1", "co": "Intuit", "grp": "ent", "title": "Group Product Manager, A2D", "lvl": "Group PM · 10+ yrs", "loc": "New York, hybrid", "min": 211, "max": 285, "fit": 9, "lvlFit": "at", "url": "https://jobs.intuit.com/job/new-york/group-product-manager-a2d/27595/73191523344", "why": "Asks for data lakes, data mesh, data lineage, and <em>building self-serve products from scratch</em> — a near-verbatim description of the text-to-SQL platform you shipped to 300+ users.", "flag": "Could not confirm from a per-req feed — this company publishes no authoritative per-job endpoint, and listing-page absence has already produced one false negative today. The posting is live and indexed; treat it as open but expect a small chance it has closed."},
+{"id": "g2", "co": "Google", "grp": "bigtech", "title": "Senior Product Manager, Generative AI, Google Cloud", "lvl": "Senior · 8+ yrs", "loc": "New York · Sunnyvale · Kirkland", "min": 192, "max": 278, "fit": 9, "lvlFit": "down", "url": "https://www.google.com/about/careers/applications/jobs/results/84567221065392838-senior-product-manager-generative-ai-google-cloud", "why": "Requires stated GenAI/LLM domain expertise, and the preferred quals include managing direct reports — your Director scope clears that comfortably.", "flag": "Could not confirm from a per-req feed — this company publishes no authoritative per-job endpoint, and listing-page absence has already produced one false negative today. The posting is live and indexed; treat it as open but expect a small chance it has closed."},
+{"id": "sc2", "co": "Scale AI", "grp": "labs", "title": "Senior AI Product Manager, Leaderboard", "lvl": "Senior", "loc": "New York · SF", "min": 206, "max": 257, "fit": 9, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/scaleai/jobs/4720216005", "why": "Owns the SEAL evaluation products — benchmark specifications, scoring frameworks, <em>trustworthy evaluation methodologies</em>. The single best match anywhere for your RAGAS-plus-human-in-the-loop work."},
+{"id": "sc3", "co": "Scale AI", "grp": "labs", "title": "Senior AI Product Manager, Finance Agents", "lvl": "Senior", "loc": "New York · SF · Seattle", "min": 205, "max": 257, "fit": 9, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/scaleai/jobs/4611776005", "why": "Builds RL environments simulating investment banking and corporate finance workflows, and asks for 3–6 years of finance-industry experience. Multi-agent systems plus Morgan Stanley plus Capco — very few people clear all three."},
+{"id": "dd3", "co": "Datadog", "grp": "nyc", "title": "Senior Product Manager, Bits Agent Builder", "lvl": "Senior PM", "loc": "New York, hybrid", "min": 192, "max": 240, "fit": 9, "lvlFit": "down", "url": "https://careers.datadoghq.com/detail/8092004/?gh_jid=8092004", "why": "A platform for building AI agents, where your multi-agent orchestration experience is the core qualification rather than a nice-to-have."},
+{"id": "g3", "co": "Google", "grp": "bigtech", "title": "Model Product Manager, Gemini for Enterprise", "lvl": "5+ yrs", "loc": "Sunnyvale · New York", "min": 163, "max": 236, "fit": 9, "lvlFit": "down", "url": "https://www.google.com/about/careers/applications/jobs/results/85250059125301958-model-product-manager-gemini-for-enterprise", "why": "Agent quality across model, harness and data, plus LLM and agent evaluation — and it wants agents deployed in regulated sectors including financial services."},
+{"id": "az1", "co": "AWS", "grp": "bigtech", "title": "Senior PMT-ES, AWS FinOps Agent", "lvl": "Senior PM-T", "loc": "New York", "min": 167, "max": 227, "fit": 9, "lvlFit": "down", "url": "https://www.amazon.jobs/en/jobs/10495384/senior-pmt-es-aws-finops-agent-aws-insights-and-optimizations", "why": "Agentic experiences over billing data, evaluating agent frameworks and reasoning models, owning AI-experience measurement. Internal transfer — your Audible tenure carries.", "flag": "Internal transfer eligible: no external loop, but Senior PMT is one rung below Director."},
+{"id": "az2", "co": "AWS", "grp": "bigtech", "title": "Senior Product Manager - Tech, Neurosymbolic AI", "lvl": "Senior PM-T", "loc": "New York", "min": 166, "max": 225, "fit": 9, "lvlFit": "down", "url": "https://www.amazon.jobs/en/jobs/10532689/senior-product-manager-tech-neurosymbolic-ai", "why": "Formal reasoning fused with neural approaches for provably correct AI — a natural extension of RAG grounding and eval rigor. Posted yesterday, so the req is fresh.", "flag": "Internal transfer eligible. Gap is formal-methods depth, not PM craft."},
+{"id": "az3", "co": "Amazon Ads", "grp": "bigtech", "title": "Senior PMT, Ads Agent Identity & Authorization", "lvl": "Senior PM-T", "loc": "New York", "min": 166, "max": 225, "fit": 9, "lvlFit": "down", "url": "https://www.amazon.jobs/en/jobs/10412505/senior-pmt-ads-agent-identity-and-authorization", "why": "Agent registry, machine-to-machine auth, capability-scoped authorization. This is your <em>MCP service-to-service work</em> under a different name — the sleeper pick on this board.", "flag": "Internal transfer eligible."},
+{"id": "az7", "co": "Amazon Ads", "grp": "bigtech", "title": "Sr. Product Manager - Technical, Ads AI Core Infrastructure", "lvl": "Senior PM-T", "loc": "New York", "min": 166, "max": 225, "fit": 9, "lvlFit": "down", "url": "https://www.amazon.jobs/en/jobs/10535614/sr-product-manager-technical-ads-ai-core-infrastructure", "why": "Agentic core infrastructure and Agent Core primitives for <em>production-grade agentic experiences at scale</em>. The closest thing Amazon has posted to the system you already run.", "flag": "Internal transfer eligible — and posted 10 Sep 2026, so you would be among the first through the door."},
+{"id": "db1", "co": "Databricks", "grp": "ent", "title": "Sr. Product Manager - Technical", "lvl": "Senior PM-T · 5+ yrs", "loc": "New York City, hybrid", "min": 157, "max": 215, "fit": 9, "lvlFit": "down", "url": "https://www.databricks.com/company/careers/product/sr-product-manager---technical-8387085002", "why": "Two tracks: OLTP databases for AI agents, or data governance. Agent-facing data infrastructure is squarely yours — but the band is well under a Director's."},
+{"id": "bb3", "co": "Bloomberg", "grp": "nyc", "title": "Technical PM, AI Platforms — GenAI Quality Platforms, CTO Office", "lvl": "Senior IC · 5+ yrs", "loc": "New York", "min": 140, "max": 295, "fit": 8.5, "lvlFit": "down", "url": "https://bloomberg.avature.net/careers/JobDetail/Technical-Product-Manager-AI-Platforms-GenAI-Quality-Platforms-CTO-Office/21191", "why": "A platform whose entire product is <em>GenAI quality measurement</em>. Your RAGAS framework and human-in-the-loop review process are the job description, set in a financial-data context you already know."},
+{"id": "g4", "co": "Google", "grp": "bigtech", "title": "Product Manager, AI Acceleration", "lvl": "5+ yrs", "loc": "New York · San Jose", "min": 163, "max": 236, "fit": 8.5, "lvlFit": "down", "url": "https://www.google.com/about/careers/applications/jobs/results/101801606806151878-product-manager-ai-acceleration", "why": "Data management tooling and agentic-data strategy — the closest thing at Google to your data-products background fused with agents."},
+{"id": "si1", "co": "Sierra", "grp": "labs", "title": "Product Manager, Agent Development", "lvl": "Senior PM+", "loc": "SF primary · New York listed", "min": 180, "max": 390, "fit": 8, "lvlFit": "down", "url": "https://jobs.ashbyhq.com/sierra/effd7cd2-8a28-4bae-a3b8-40720ba09717", "why": "Customer-facing agent development on highly technical products — a direct read on your orchestration work.", "flag": "New York confirmed real — Sierra's job API lists NY as an explicit secondary location for this req specifically, even though the rendered page only says \"primarily in-person, based in San Francisco.\" The $180–390K range is unverified; it appears in neither the API nor the page."},
+{"id": "an3", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Business Technology", "lvl": "Senior", "loc": "SF · Seattle · New York", "min": 305, "max": 385, "fit": 8, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5397737008", "why": "First dedicated PM for an internal AI-native collaboration platform. Your <em>CEO business-review automation at 60% time savings</em> is exactly this problem, already solved once."},
+{"id": "az4", "co": "AWS", "grp": "bigtech", "title": "Director, Product Management, AWS Developer Tools", "lvl": "Director", "loc": "New York", "min": 263, "max": 350, "fit": 8, "lvlFit": "at", "url": "https://www.amazon.jobs/en/jobs/10513401/director-product-management-aws-developer-tools", "why": "The only Amazon NYC role at your level, and the org is centered on shipping software through AI agents with agent task success rate as a core metric. Developer-tools history is the stretch.", "flag": "Internal transfer eligible — and the only same-level Amazon move in NYC."},
+{"id": "dd4", "co": "Datadog", "grp": "nyc", "title": "Director, Product Management, Core Platforms", "lvl": "Director · 10+ yrs", "loc": "New York, hybrid", "min": 280, "max": 350, "fit": 8, "lvlFit": "at", "url": "https://careers.datadoghq.com/detail/7583609/?gh_jid=7583609", "why": "Requires 10+ years B2B SaaS and 5+ managing PMs — you clear both. Less AI-specific, closer to the data-platform half of your record."},
+{"id": "fg3", "co": "Figma", "grp": "ent", "title": "Manager, Product Management — Platform Experience", "lvl": "Manager · 5+ yrs managing PMs", "loc": "SF · New York", "min": 204, "max": 348, "fit": 8, "lvlFit": "at", "url": "https://job-boards.greenhouse.io/figma/jobs/6160732004", "why": "The best people-leadership match for a sitting Director — coaching a senior PM bench across platform surfaces. Weaker on AI specificity, stronger on level and comp."},
+{"id": "c1", "co": "Capital One", "grp": "nyc", "title": "Senior Director, Product Management, Payments Intelligence", "lvl": "Senior Director", "loc": "New York · McLean", "min": 294, "max": 336, "fit": 8, "lvlFit": "up", "url": "https://www.capitalonecareers.com/job/new-york/senior-director-product-management-payments-intelligence/1732/98222385616", "why": "A genuine step up in scope, prefers agentic commerce experience, and the fintech background lands without translation. Highest floor on the board."},
+{"id": "an5", "co": "Anthropic", "grp": "labs", "title": "Product Operations Manager, Feedback Loops", "lvl": "Ops track · 7+ yrs", "loc": "New York · SF", "min": 260, "max": 325, "fit": 8, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5179882008", "why": "Intake pipelines, AI-enabled synthesis, routing infrastructure — and it asks for hands-on shipping with <em>prompt engineering and evals</em>. Note this is an ops title, not PM track."},
+{"id": "st1", "co": "Stripe", "grp": "ent", "title": "Staff Product Manager, Enterprise", "lvl": "Staff · 12+ yrs", "loc": "New York · South SF", "min": 214, "max": 322, "fit": 8, "lvlFit": "at", "url": "https://stripe.com/jobs/listing/staff-product-manager-enterprise-industries/7812856", "why": "Wants 12+ years in complex regulated environments with API and system-design fluency. Morgan Stanley, Capco, Deloitte and Accenture is precisely that pedigree."},
+{"id": "fg2", "co": "Figma", "grp": "ent", "title": "Product Manager, AI Growth", "lvl": "PM · 7+ yrs", "loc": "SF · New York", "min": 169, "max": 303, "fit": 8, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/figma/jobs/5989185004", "why": "AI-powered product development with data-driven experimentation. Your eval and orchestration depth covers the AI half; growth experimentation is the lighter side of your record."},
+{"id": "sc4", "co": "Scale AI", "grp": "labs", "title": "Forward Deployed Product Manager, Enterprise", "lvl": "6+ yrs", "loc": "New York, 3 days/wk", "min": 206, "max": 257, "fit": 8, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/scaleai/jobs/4673051005", "why": "Needs someone credible with a VP and a senior engineer in the same meeting, shipping into large orgs rather than pilots. Consulting background plus in-house delivery is exactly that hybrid."},
+{"id": "g5", "co": "Google", "grp": "bigtech", "title": "Senior AI Product Operations Manager, Growth AI Transformation", "lvl": "Senior · 11+ yrs", "loc": "New York only", "min": 176, "max": 256, "fit": 8, "lvlFit": "down", "url": "https://www.google.com/about/careers/applications/jobs/results/142904922717725382-senior-ai-product-operations-manager-growth-ai-transformation", "why": "Explicitly calls for structuring data for <em>retrieval-augmented generation</em> and LLM orchestration, and the 11-year consulting-weighted bar fits your Deloitte and Accenture path. Product ops, not product."},
+{"id": "c2", "co": "Capital One", "grp": "nyc", "title": "Senior Manager, Product Manager, AI Acceleration", "lvl": "Senior Manager", "loc": "New York · McLean", "min": 219, "max": 250, "fit": 8, "lvlFit": "down", "url": "https://www.capitalonecareers.com/job/new-york/senior-manager-product-manager-ai-acceleration/1732/99185503712", "why": "An explicit AI acceleration mandate inside a bank — content is a strong fit, but Capital One's Senior Manager sits below your current title.", "flag": "Dual-level req: also posted at Manager level ($179.7–205.1K in NY). Confirm which level you would be slotted into."},
+{"id": "nf1", "co": "Netflix", "grp": "bigtech", "title": "Product Manager, Ads Platform — Ads Reporting", "lvl": "5+ yrs", "loc": "New York only, onsite", "min": 310, "max": 545, "fit": 7.5, "lvlFit": "down", "url": "https://explore.jobs.netflix.net/careers/job/790315472265", "why": "A reporting and measurement data product, NYC-exclusive, at a very large comp step up. No AI component, and it wants MRC accreditation experience you would be learning."},
+{"id": "an6", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Beneficial Deployments (Labs)", "lvl": "Senior", "loc": "SF · New York", "min": 385, "max": 460, "fit": 7, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5407337008", "why": "Exploratory deployment work at the top Anthropic band. Broad remit, less direct overlap with your platform and evals specialty than Agent Platform or Enterprise."},
+{"id": "g7", "co": "Google", "grp": "bigtech", "title": "Group Product Manager, AI Agent Security & Authorization", "lvl": "Group PM · 10+ yrs", "loc": "San Jose · New York", "min": 240, "max": 333, "fit": 7, "lvlFit": "at", "url": "https://www.google.com/about/careers/applications/jobs/results/75437862740206278-group-product-manager-ai-agent-security-and-authorization", "why": "Right seniority and comp for a Director, and LLM-agent security touches your stack — but the core ask is zero-trust and OAuth architecture, a real gap to argue around."},
+{"id": "dz1", "co": "DoorDash", "grp": "ent", "title": "Product Manager (Multiple Levels — apply at I6)", "lvl": "I4 / I5 / I6", "loc": "New York · SF · Seattle, hybrid", "min": 194, "max": 285, "fit": 7, "lvlFit": "at", "url": "https://careersatdoordash.com/jobs/product-manager-multiple-levels/5523275/", "why": "I6 is a legitimate landing spot for a Director and the req routes into six pillars. Consumer marketplace is a real pivot away from data and AI platform work."},
+{"id": "jw1", "co": "Justworks", "grp": "nyc", "title": "Group Product Manager, Product Foundations", "lvl": "Group PM · 7+ yrs", "loc": "New York, 2 days/wk", "min": 212, "max": 274, "fit": 7, "lvlFit": "at", "url": "https://job-boards.greenhouse.io/justworks/jobs/8139741", "why": "Level and platform scope fit, and regulated-domain background is called out as a plus. Not an AI role, so your sharpest differentiator goes unused."},
+{"id": "az5", "co": "Amazon Ads", "grp": "bigtech", "title": "Principal PMT, Measurement (MADS)", "lvl": "Principal PM-T", "loc": "New York", "min": 198, "max": 268, "fit": 7, "lvlFit": "at", "url": "https://www.amazon.jobs/en/jobs/10526521/principal-product-mgr-tech-measurement-measurement-ad-tech-and-data-science-mads", "why": "A pure data-products role at Amazon Ads scale, lining up with your self-serve analytics history. Step up in level with less AI content.", "flag": "Internal transfer eligible."},
+{"id": "az6", "co": "Amazon Ads", "grp": "bigtech", "title": "Principal PMT, Ads Performance Measurement", "lvl": "Principal PM-T", "loc": "New York · Seattle", "min": 198, "max": 268, "fit": 7, "lvlFit": "at", "url": "https://www.amazon.jobs/en/jobs/10481931/principal-product-manager-tech-ads-performance-measurement", "why": "Same org as above, with AI/ML technologies called out in preferred quals. Measurement and attribution is a data-modeling problem you are equipped for; ad tech is new. Seattle carries a separate, lower band ($179.9–243.4K).", "flag": "Internal transfer eligible."},
+{"id": "st2", "co": "Stripe", "grp": "ent", "title": "Product Manager, Commerce Systems", "lvl": "PM · 7+ yrs", "loc": "New York · South SF · Seattle", "min": 179, "max": 268, "fit": 7, "lvlFit": "down", "url": "https://stripe.com/jobs/listing/product-manager-commerce-systems/7561551", "why": "Large-scale backend systems and API-first platform infrastructure. Platform instincts transfer; the domain is billing rather than AI."},
+{"id": "dd5", "co": "Datadog", "grp": "nyc", "title": "Senior Platform PM, AI SDLC Trusted Throughput", "lvl": "Senior Platform PM", "loc": "New York, hybrid", "min": 192, "max": 240, "fit": 7, "lvlFit": "down", "url": "https://careers.datadoghq.com/detail/7947683/?gh_jid=7947683", "why": "AI-transformed engineering workflows and DORA metrics — good AI plus data overlap, but internal developer productivity is a step away from customer-facing work."},
+{"id": "rh1", "co": "Robinhood", "grp": "nyc", "title": "Staff Product Manager, Banking", "lvl": "Staff", "loc": "New York, 3+ days/wk", "min": 191, "max": 225, "fit": 7, "lvlFit": "at", "url": "https://job-boards.greenhouse.io/robinhood/jobs/8044746", "why": "Consumer banking product where your financial-services depth carries more weight than your AI depth. Staff preserves level; the band does not preserve comp."},
+{"id": "nf2", "co": "Netflix", "grp": "bigtech", "title": "Product Manager, Ads Platform — Experimentation & Incrementality", "lvl": "8+ yrs", "loc": "New York · LA · Los Gatos · Seattle", "min": 440, "max": 725, "fit": 6.5, "lvlFit": "down", "url": "https://explore.jobs.netflix.net/careers/job/790318344742", "why": "The analytics and evaluation mindset transfers from your LLM eval work, but causal inference and ads measurement are domains you would enter cold. Extraordinary band."},
+{"id": "g8", "co": "Google", "grp": "bigtech", "title": "Senior Product Manager, Google Workspace", "lvl": "Senior · 8+ yrs", "loc": "New York · Kirkland · Sunnyvale · Waterloo ON", "min": 192, "max": 278, "fit": 6.5, "lvlFit": "down", "url": "https://www.google.com/about/careers/applications/jobs/results/117300037095957190-senior-product-manager-google-workspace", "why": "Solid seniority and comp with direct reports in the preferred quals, but no AI mandate. A fallback rather than a target."},
+{"id": "az8", "co": "Amazon", "grp": "bigtech", "title": "Senior Product Manager, Amazon Live", "lvl": "Senior PM", "loc": "New York", "min": 166, "max": 225, "fit": 6.5, "lvlFit": "down", "url": "https://www.amazon.jobs/en/jobs/10531586/senior-product-manager-amazon-live", "why": "Generative AI for content creation on a live shopping surface. Media-adjacent to Audible, but a non-technical PM title and a consumer remit.", "flag": "Internal transfer eligible."},
+{"id": "nf3", "co": "Netflix", "grp": "bigtech", "title": "Sr. Manager, Product Management (Ad Sales Products)", "lvl": "Sr. Manager · people leader", "loc": "New York · LA · Los Gatos · Seattle", "min": 520, "max": 1000, "fit": 6, "lvlFit": "at", "url": "https://explore.jobs.netflix.net/careers/job/790317595774", "why": "The only Netflix posting at true Director-equivalent scope, with a band unmatched anywhere on this board. It requires adtech, CTV and programmatic depth you do not have."},
+{"id": "an7", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Growth", "lvl": "Senior", "loc": "SF · New York · Seattle", "min": 385, "max": 460, "fit": 6, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5406106008", "why": "Consumer-growth weighted against your enterprise-and-applied profile — a stretch on surface area, though the band is exceptional."},
+{"id": "an10", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Claude Tag", "lvl": "Senior", "loc": "SF · New York (metadata) — see flag", "min": 385, "max": 460, "fit": 6, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5251866008", "why": "Strong band and an integration-shaped product, but resolve the location question before spending time on it.", "flag": "Still contradictory: the live feed's location field says San Francisco and New York City, while the posting body says San Francisco and Seattle only. Ask the recruiter before investing time."},
+{"id": "an8", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Claude Science", "lvl": "Senior", "loc": "SF · New York · Seattle", "min": 305, "max": 385, "fit": 6, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5394887008", "why": "Grounding prioritization in usage data and eval results plays to you; the scientific domain expertise needed to engage researchers is the gap."},
+{"id": "an9", "co": "Anthropic", "grp": "labs", "title": "Product Manager, Research (Code)", "lvl": "5+ yrs", "loc": "SF · New York", "min": 305, "max": 385, "fit": 6, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/anthropic/jobs/5324349008", "why": "Requires Python and SQL fluency and research-to-product translation. Text-to-SQL helps; coding-agent depth is thinner."},
+{"id": "in2", "co": "Intuit", "grp": "ent", "title": "Principal Product Manager, Growth — Retention & Churn", "lvl": "Principal", "loc": "New York, hybrid", "min": 240, "max": 325, "fit": 6, "lvlFit": "at", "url": "https://jobs.intuit.com/job/new-york/principal-product-manager-growth-retention-and-churn/27595/99455411696", "why": "Excellent level and comp, partnering with data science on predictive models — but it wants deep growth-PM and PLG specialization, not your center of gravity."},
+{"id": "mg1", "co": "MongoDB", "grp": "ent", "title": "Staff Product Manager, AI Builder Experience", "lvl": "Staff · 8+ yrs", "loc": "NYC office, flexible", "min": 151, "max": 297, "fit": 6, "lvlFit": "at", "url": "https://www.mongodb.com/careers/jobs/8129885", "why": "AI-native workflows, agentic frameworks, and developer platforms — and your vector-DB work sits directly in the Atlas Vector Search ecosystem they are building for.", "flag": "Content mismatch: the live posting body describes owning MongoDB's ecosystem Partner Platform, not an AI builder experience. Looks like a recycled or retitled req — clarify the actual scope before applying."},
+{"id": "bb4", "co": "Bloomberg", "grp": "nyc", "title": "Product Manager, AI Enterprise Capacity Management", "lvl": "PM", "loc": "New York", "min": 140, "max": 295, "fit": 6, "lvlFit": "down", "url": "https://bloomberg.avature.net/careers/JobDetail/Product-Manager-AI-Enterprise-Capacity-Management/21377", "why": "AI infrastructure capacity planning at Bloomberg scale. A plain PM title puts it below your level and the work sits closer to infra operations than product strategy."},
+{"id": "os1", "co": "Oscar Health", "grp": "nyc", "title": "Director of Product, Claims Design", "lvl": "Director · 10+ yrs", "loc": "New York, 3 days/wk", "min": 219, "max": 287, "fit": 6, "lvlFit": "at", "url": "https://www.hioscar.com/careers/8073842?gh_jid=8073842", "why": "Title and management requirements match exactly, but it asks for 3+ years of payer or provider tech that you do not have."},
+{"id": "ad1", "co": "Adobe", "grp": "ent", "title": "Principal Product Manager, Bridgeway", "lvl": "Principal", "loc": "Location unverified — see flag", "min": 195, "max": 282, "fit": 6, "lvlFit": "at", "url": "https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/Principal-Product-Manager_R171078", "why": "Agentic systems with LLMs, memory, evals and orchestration for their AI marketing assistant — content-wise one of the strongest fits found.", "flag": "Unresolved after two attempts. Adobe renders location client-side and blocks automated reads, so I cannot confirm New York is a valid work location — only that the posting carries a New York pay band ($194.8–282.1K). Ask a recruiter first."},
+{"id": "st3", "co": "Stripe", "grp": "ent", "title": "Product Manager, Startup Products", "lvl": "PM · 6+ yrs", "loc": "New York · South SF · Seattle", "min": 179, "max": 268, "fit": 6, "lvlFit": "down", "url": "https://stripe.com/jobs/listing/product-manager-startup-products/7901987", "why": "Asks for enthusiasm about AI and willingness to experiment on API products at scale. Level sits below your current seniority."},
+{"id": "pl1", "co": "Peloton", "grp": "nyc", "title": "Lead Product Manager", "lvl": "Lead · 6+ yrs", "loc": "New York, 3 days/wk", "min": 215, "max": 265, "fit": 6, "lvlFit": "at", "url": "https://careers.onepeloton.com/en/all-jobs/8093029/lead-product-manager", "why": "Subscription-media adjacency to Audible helps the story, but the posting carries no AI mandate at all."},
+{"id": "in3", "co": "Intuit", "grp": "ent", "title": "Staff Product Manager, GBSG Shared Experiences", "lvl": "Staff · 4+ yrs", "loc": "New York City, hybrid", "min": 178, "max": 241, "fit": 6, "lvlFit": "at", "url": "https://jobs.intuit.com/job/new-york/staff-product-manager-gbsg-shared-experiences/27595/89706909088", "why": "A clean NYC platform role, but the 4-year bar signals a team scoped well below what you run today.", "flag": "Could not confirm from a per-req feed — this company publishes no authoritative per-job endpoint, and listing-page absence has already produced one false negative today. The posting is live and indexed; treat it as open but expect a small chance it has closed."},
+{"id": "os2", "co": "Oscar Health", "grp": "nyc", "title": "Group Product Manager, Lucie Platform", "lvl": "Group PM · 7+ yrs", "loc": "New York, 3 days/wk", "min": 181, "max": 237, "fit": 6, "lvlFit": "at", "url": "https://www.hioscar.com/careers/8070624?gh_jid=8070624", "why": "Platform leadership fits; healthcare marketplace and enrollment domain does not."},
+{"id": "rh2", "co": "Robinhood", "grp": "nyc", "title": "Senior PM, International Trading", "lvl": "Senior PM", "loc": "New York, 3+ days/wk", "min": 183, "max": 215, "fit": 6, "lvlFit": "down", "url": "https://job-boards.greenhouse.io/robinhood/jobs/8060600", "why": "Trading product where the Morgan Stanley years read well, though nothing in the posting uses your AI record."},
+{"id": "et1", "co": "Etsy", "grp": "nyc", "title": "Senior Product Manager, Recommendations Relevance", "lvl": "Senior PM · 3+ yrs", "loc": "Brooklyn, 1–2 days/wk", "min": 161, "max": 209, "fit": 6, "lvlFit": "down", "url": "https://careers.etsy.com/jobs/senior-product-manager-recommendations-relevance-new-york-united-states", "why": "ML-powered products and experimentation, but a 3-year bar and a band well below your level make this a clear down-level.", "flag": "Could not confirm from a per-req feed — this company publishes no authoritative per-job endpoint, and listing-page absence has already produced one false negative today. The posting is live and indexed; treat it as open but expect a small chance it has closed."}
+]
+</script>
+<script>
+(function(){
+  "use strict";
+  var PRISTINE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+  var ROLES = JSON.parse(document.getElementById("role-data").textContent);
+  var state;
+  try { state = JSON.parse(document.getElementById("app-state").textContent) || {}; }
+  catch(e){ state = {}; }
+  if (!state.status) state.status = {};
+
+  var STATUSES = ["none","shortlist","applied","interviewing","closed"];
+  var LABELS = {none:"+ track", shortlist:"shortlisted", applied:"applied", interviewing:"interviewing", closed:"closed"};
+
+  var TIERS = [
+    {key:"t1", min:9,   max:99,  title:"Apply this week", note:"Nine or above. Each of these names something from your résumé in its own requirements — MCP, RAG, agent orchestration, or evaluation frameworks — rather than merely tolerating it."},
+    {key:"t2", min:7.5, max:8.99,title:"Strong, with one stretch", note:"Real overlap, but each carries a gap worth preparing an answer for: a domain you have not worked in, a level that moves, or a comp band that does not."},
+    {key:"t3", min:0,   max:7.49,title:"Worth a look", note:"Right city, right seniority, weaker claim on what makes you distinctive. Useful as second-round options or as calibration on the market."}
+  ];
+
+  var filters = {q:"", grp:"all", lvl:"all", sort:"fit"};
+  var board = document.getElementById("board");
+  var saveflag = document.getElementById("saveflag");
+  var artifactNs = null, pubTimer = null, dirty = false;
+
+  function money(r){
+    if (r.min == null) return '<span class="cl">band not posted</span>';
+    var f = function(n){ return n >= 1000 ? "$" + (n/1000).toFixed(1).replace(".0","") + "M" : "$" + n + "K"; };
+    return '<span class="band mono">' + f(r.min) + "–" + f(r.max) + '</span><span class="cl">base band</span>';
+  }
+  function initials(co){
+    var w = co.split(/[\s]+/).filter(Boolean);
+    if (w.length === 1) return w[0].slice(0,2).toUpperCase();
+    return (w[0][0] + w[1][0]).toUpperCase();
+  }
+  function lvlBadge(v){
+    if (v === "up")   return '<span class="badge lvl-up">level up</span>';
+    if (v === "at")   return '<span class="badge lvl-at">holds level</span>';
+    return '<span class="badge lvl-down">down-level</span>';
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function matches(r){
+    if (filters.grp !== "all" && r.grp !== filters.grp) return false;
+    if (filters.lvl === "keep" && r.lvlFit === "down") return false;
+    if (filters.q){
+      var hay = (r.co + " " + r.title + " " + r.why + " " + r.lvl + " " + r.loc).toLowerCase();
+      if (hay.indexOf(filters.q) === -1) return false;
+    }
+    return true;
+  }
+
+  function sortFn(a,b){
+    if (filters.sort === "comp") return (b.max||0) - (a.max||0);
+    if (filters.sort === "co")   return a.co.localeCompare(b.co) || b.fit - a.fit;
+    return b.fit - a.fit || (b.max||0) - (a.max||0);
+  }
+
+  function rowHTML(r){
+    var st = state.status[r.id] || "none";
+    var fitClass = r.fit >= 9 ? "hi" : (r.fit >= 7.5 ? "mid" : "lo");
+    var cls = "row" + (st === "applied" || st === "interviewing" ? " applied" : "") + (st === "closed" ? " closed" : "");
+    return '<article class="' + cls + '" data-id="' + r.id + '">' +
+      '<div class="mark" aria-hidden="true">' + initials(r.co) + '</div>' +
+      '<div class="main">' +
+        '<h3 class="rtitle"><a href="' + r.url + '" target="_blank" rel="noopener noreferrer">' + esc(r.title) + '</a></h3>' +
+        '<p class="meta"><span class="co">' + esc(r.co) + '</span><span class="dot">/</span>' +
+          '<span>' + esc(r.lvl) + '</span><span class="dot">/</span><span>' + esc(r.loc) + '</span>' +
+          lvlBadge(r.lvlFit) +
+          '<a class="alt" href="https://duckduckgo.com/?q=' + encodeURIComponent(r.co + ' careers "' + r.title.split(/[—(]/)[0].trim() + '"') + '" target="_blank" rel="noopener noreferrer" title="Find this req if the direct link fails">find req ↗</a>' +
+        '</p>' +
+        '<p class="why">' + r.why + '</p>' +
+        (r.flag ? '<p class="flagline"><span>' + esc(r.flag) + '</span></p>' : '') +
+      '</div>' +
+      '<div class="comp">' + money(r) + '</div>' +
+      '<div class="right">' +
+        '<div class="fit ' + fitClass + '" title="Fit score out of 10">' + r.fit.toFixed(1) + '</div>' +
+        '<button class="status" data-s="' + st + '" data-id="' + r.id + '">' + LABELS[st] + '</button>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function render(){
+    var visible = ROLES.filter(matches);
+    var html = "";
+    TIERS.forEach(function(t){
+      var set = visible.filter(function(r){ return r.fit >= t.min && r.fit <= t.max; }).sort(sortFn);
+      if (!set.length) return;
+      html += '<section class="tier"><div class="tier-head"><h2>' + t.title + '</h2>' +
+        '<span class="count mono">' + set.length + ' role' + (set.length === 1 ? "" : "s") + '</span>' +
+        '<span class="rule"></span></div>' +
+        '<p class="tier-note">' + t.note + '</p>' +
+        '<div class="rows">' + set.map(rowHTML).join("") + '</div></section>';
+    });
+    board.innerHTML = html || '<div class="empty">No roles match those filters. Widen the sector or level filter.</div>';
+  }
+
+  // ---- stats
+  document.getElementById("stat-total").textContent = ROLES.length;
+  document.getElementById("stat-level").textContent = ROLES.filter(function(r){ return r.lvlFit !== "down"; }).length;
+  document.getElementById("stat-tier1").textContent = ROLES.filter(function(r){ return r.fit >= 9; }).length;
+
+  // ---- controls
+  document.getElementById("q").addEventListener("input", function(e){
+    filters.q = e.target.value.trim().toLowerCase(); render();
+  });
+  ["grp","lvl"].forEach(function(id){
+    document.getElementById(id).addEventListener("click", function(e){
+      var b = e.target.closest(".chip"); if (!b) return;
+      this.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      filters[id] = b.dataset.v; render();
+    });
+  });
+  document.getElementById("sort").addEventListener("change", function(e){
+    filters.sort = e.target.value; render();
+  });
+
+  board.addEventListener("click", function(e){
+    var b = e.target.closest(".status"); if (!b) return;
+    var id = b.dataset.id;
+    var cur = state.status[id] || "none";
+    var next = STATUSES[(STATUSES.indexOf(cur) + 1) % STATUSES.length];
+    if (next === "none") delete state.status[id]; else state.status[id] = next;
+    render();
+    queueSave();
+  });
+
+  // ---- persistence
+  function setFlag(txt, ok){
+    saveflag.innerHTML = ok ? "<b>" + txt + "</b>" : txt;
+  }
+  function queueSave(){
+    dirty = true;
+    if (!artifactNs){ setFlag("tracking locally", false); return; }
+    setFlag("saving…", false);
+    clearTimeout(pubTimer);
+    pubTimer = setTimeout(doSave, 1100);
+  }
+  function doSave(){
+    if (!artifactNs || !dirty) return;
+    var json = JSON.stringify(state).replace(/</g, "\\u003c");
+    var next = PRISTINE.replace(
+      /(<script id="app-state" type="application\/json">)[\s\S]*?(<\/script>)/,
+      function(m, a, b){ return a + json + b; }
+    );
+    dirty = false;
+    artifactNs.publish(next).then(function(){
+      setFlag("saved for everyone", true);
+    }).catch(function(err){
+      var code = err && err.code;
+      if (code === "conflict") return;
+      setFlag(code === "not_granted" || code === "not_writer" ? "view only" : "save failed", false);
+    });
+  }
+
+  render();
+
+  if (window.claude && typeof window.claude.use === "function"){
+    window.claude.use("artifact").then(function(ns){
+      if (!ns) return;
+      artifactNs = ns;
+      setFlag(Object.keys(state.status).length ? "saved for everyone" : "changes save here", true);
+      if (dirty) queueSave();
+    }).catch(function(){});
+  }
+})();
+</script>
+
+</body></html>
